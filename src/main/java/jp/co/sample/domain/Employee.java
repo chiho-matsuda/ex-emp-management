@@ -1,5 +1,11 @@
 package jp.co.sample.domain;
 
+import java.util.Date;
+
+/**
+ * @author matsudachiho
+ *従業員管理情報
+ */
 public class Employee {
 private Integer id;
 private String name;
@@ -13,6 +19,27 @@ private String telehone;
 private Integer salary;
 private String characteristics;
 private Integer dependentsCount;
+
+
+public Employee() {
+	super();
+}
+public Employee(Integer id, String name, String image, String gender, Date hireDate, String mailAddress, String zipCode,
+		String address, String telehone, Integer salary, String characteristics, Integer dependentsCount) {
+	super();
+	this.id = id;
+	this.name = name;
+	this.image = image;
+	this.gender = gender;
+	this.hireDate = hireDate;
+	this.mailAddress = mailAddress;
+	this.zipCode = zipCode;
+	this.address = address;
+	this.telehone = telehone;
+	this.salary = salary;
+	this.characteristics = characteristics;
+	this.dependentsCount = dependentsCount;
+}
 public Integer getId() {
 	return id;
 }
