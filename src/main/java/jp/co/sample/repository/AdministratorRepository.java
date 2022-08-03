@@ -1,5 +1,7 @@
 package jp.co.sample.repository;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
@@ -20,30 +22,37 @@ public class AdministratorRepository {
 		Administrator administrator = new Administrator();
 		administrator.setId(rs.getInt("id"));
 		administrator.setName(rs.getString("name"));
-		administrator.setMailAddress(rs.getString("address"));
+		administrator.setMailAddress(rs.getString("mail_address"));
 		administrator.setPassword(rs.getString("password"));
 		return administrator;
 	};
 		
 	public void insert(Administrator administrator) {
 		SqlParameterSource param = new BeanPropertySqlParameterSource(administrator);
-		if (administrator.getId() == null) {
+		
 		String insertSql
 		= "INSERT INTO administrators(mailaddres,password)"
 		 + " VALUES(:address,:password)";
 		template.update(insertSql,param);
-		} return;
+		 return;
 	}
 	
 	public Administrator findByMailAddressAndPassword(String mailAddress,String password) {
 		String selectSql 
-		= "SELECT mailAddress,password FROM administrators WHERE id-:id";
+		= "SELECT id, name, mail_address,password FROM administrators WHERE mail_address = :mailAddress"
+				+ " and password = :password";
 		
 		SqlParameterSource param = new MapSqlParameterSource()
 				                    .addValue("mailAddress",mailAddress)
 				                    .addValue("password", password);
-		template.update(selectSql, param);
-		return null;
+		                             
+		System.out.println(selectSql);
+		
+		List<Administrator> adminList = template.query(selectSql, param, ADMINISTRATOR_ROW_MAPPER);
+		if (adminList.isEmpty()) {
+			return null;
+		}
+		return adminList.get(0);
 	}
 	
 	

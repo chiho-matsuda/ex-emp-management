@@ -48,7 +48,7 @@ public class EmployeeRepository {
 	public void update(Employee employee) {
 		SqlParameterSource param = new BeanPropertySqlParameterSource(employee);
 		
-		String updateSql = "update employees set id=:id, name=:name, image=:image, gender=:gender,"
+		String updateSql = "update employees set  name=:name, image=:image, gender=:gender,"
 		    + " hire_date:hire_date, mail_address:mail_address, zip_code:zip_code,address:adress,"
 		    + " telephone:telephone, salary:salary, characteristics:characteristics, dependents_count:depemdemts_count"
 		    + " where id=id:";

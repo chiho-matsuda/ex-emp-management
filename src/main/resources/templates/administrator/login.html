@@ -50,6 +50,7 @@
                   </div>
                 </div>
                 <div class="form-group">
+                <div th:errprs="*{mailAddress}" style="color: red;"> エラー</div>
                   <label for="mailAddress">メールアドレス:</label>
                   <input th:field="*{mailAddress}"
                     type="text"
@@ -60,6 +61,7 @@
                   />
                 </div>
                 <div class="form-group">
+                <div th:errprs="*{password}" style="color: red;"> エラー</div>
                   <label for="inputPassword">パスワード:</label>
                   <input th:field="*{password}"
                     type="password"
