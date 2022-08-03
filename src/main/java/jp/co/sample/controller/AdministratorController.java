@@ -21,7 +21,7 @@ public InsertAdministratorForm setUpInsertAdministratorForm() {
 
 @RequestMapping("/toInsert")
 public String toInsert() {
-	return "agministrator/insert.html";
+	return "administrator/insert";
 }
 
 
