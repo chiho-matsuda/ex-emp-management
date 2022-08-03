@@ -7,6 +7,7 @@ import org.springframework.web.client.HttpClientErrorException.BadRequest;
 
 import jp.co.sample.domain.Administrator;
 import jp.co.sample.form.InsertAdministratorForm;
+import jp.co.sample.form.LoginForm;
 import jp.co.sample.service.AdministratorService;
 
 @Controller
@@ -35,18 +36,19 @@ public String insert(InsertAdministratorForm form) {
 	administrator.getMailAddress();
 	administrator.getPassword();
 	service.insert(administrator);
-	return "/";
-	
-	
-	
+	return "/";	
 }
 
+@ModelAttribute
+public LoginForm setUpLoginForm() {
+	LoginForm loginForm = new LoginForm();
+	return loginForm;
+}
 
-
-
-
-
-
+@RequestMapping("/")
+public String toLogin() {
+	return "administrator/login";
+}
 
 
 
