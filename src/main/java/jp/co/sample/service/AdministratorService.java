@@ -21,7 +21,9 @@ public Administrator findByMailAddressAndPassword(String mailAddress, String pas
 	return repository.findByMailAddressAndPassword(mailAddress, password);
 }
 	
-	
+public Administrator login (String mailAddress,String password) {
+	return repository.findByMailAddressAndPassword(mailAddress, password);
+}
 
 	
 
