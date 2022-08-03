@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
-import org.springframework.jdbc.core.namedparam.NamedParameterJdbcDaoSupport;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.stereotype.Repository;
 
@@ -14,7 +14,7 @@ import jp.co.sample.domain.Administrator;
 public class AdministratorRepository {
 
 	@Autowired
-	private NamedParameterJdbcDaoSupport template;
+	private NamedParameterJdbcTemplate template;
 	
 	
 	private static final RowMapper<Administrator> ADOMINISTRATOR_ROW_MAPPER = (rs,i) -> {
@@ -27,10 +27,11 @@ public class AdministratorRepository {
 	};
 		
 	public void insert(Administrator administrator) {
+		SqlParameterSource param = new BeanPropertySqlParameterSource(administrator);
 		String insertSql
 		= "INSERT INTO administrators(id,name,mailaddres,password)"
 		 + " VALUES(:id,:name,:address,:password)";
-		
+		template.update(insertSql,param);
 	}
 	
 	public Administrator findByMailAddressAndPassword(String mailAddress,String password) {
