@@ -29,8 +29,8 @@ public class AdministratorRepository {
 		SqlParameterSource param = new BeanPropertySqlParameterSource(administrator);
 		if (administrator.getId() == null) {
 		String insertSql
-		= "INSERT INTO administrators(id,name,mailaddres,password)"
-		 + " VALUES(:id,:name,:address,:password)";
+		= "INSERT INTO administrators(mailaddres,password)"
+		 + " VALUES(:address,:password)";
 		template.update(insertSql,param);
 		} return;
 	}

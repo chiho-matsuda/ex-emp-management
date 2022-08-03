@@ -3,7 +3,9 @@ package jp.co.sample.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.client.HttpClientErrorException.BadRequest;
 
+import jp.co.sample.domain.Administrator;
 import jp.co.sample.form.InsertAdministratorForm;
 import jp.co.sample.service.AdministratorService;
 
@@ -25,8 +27,19 @@ public String toInsert() {
 }
 
 
-
-
+@RequestMapping("/insert")
+public String insert(InsertAdministratorForm form) {
+	Administrator administrator = new Administrator();
+	administrator.getId();
+	administrator.getName();
+	administrator.getMailAddress();
+	administrator.getPassword();
+	service.insert(administrator);
+	return "/";
+	
+	
+	
+}
 
 
 
