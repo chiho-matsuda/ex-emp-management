@@ -22,7 +22,7 @@ public Administrator findByMailAddressAndPassword(String mailAddress, String pas
 }
 	
 	
-	
+
 	
 
 	
