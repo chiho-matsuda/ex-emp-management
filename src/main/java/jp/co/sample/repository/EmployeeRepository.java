@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
@@ -45,6 +46,13 @@ public class EmployeeRepository {
 	
 	
 	public void update(Employee employee) {
+		SqlParameterSource param = new BeanPropertySqlParameterSource(employee);
+		
+		String updateSql = "update employees set id=:id, name=:name, image=:image, gender=:gender,"
+		    + " hire_date:hire_date, mail_address:mail_address, zip_code:zip_code,address:adress,"
+		    + " telephone:telephone, salary:salary, characteristics:characteristics, dependents_count:depemdemts_count"
+		    + " where id=id:";
+		template.update(updateSql, param);
 		
 	}
 	
